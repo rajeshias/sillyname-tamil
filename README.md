@@ -7,6 +7,8 @@ var generateName = require('sillyname-tamil');
 var sillyName = generateName();
 ````
 
-**Some example results:**
-
-* 
+ES6 import
+```javascript
+import generateStupidTamilName from 'sillyname-tamil';
+const sillyName = generateStupidTamilName();
+```

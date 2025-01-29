@@ -17,7 +17,7 @@ function randomAdjective(generator){
     return adjectives[Math.floor(generator()*adjectives.length)];
 }
 
-function generateStupidName(generator){
+function generateStupidTamilName(generator){
     var noun1 = randomNoun(generator);
     var noun2 = randomNoun(generator);
     noun2 = noun2.substr(0, 1).toUpperCase() + noun2.substr(1);
@@ -25,7 +25,7 @@ function generateStupidName(generator){
     return adjective + noun1 + ' ' + noun2;
 }
 
-console.log(generateStupidName());
+console.log(generateStupidTamilName());
 
 module.exports = generateStupidName;
 module.exports.randomNoun = randomNoun;

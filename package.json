@@ -1,7 +1,7 @@
 {
   "name": "sillyname-tamil",
   "version": "0.1.1",
-  "description": "A silly random name generator",
+  "description": "A silly random Tamil name generator",
   "main": "index.js",
   "directories": {
     "test": "test"
