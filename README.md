@@ -3,7 +3,7 @@
 A random silly name generator but in Tamil
 
 ```javascript
-var generateName = require('sillynam-tamil');
+var generateName = require('sillyname-tamil');
 var sillyName = generateName();
 ````
 
