@@ -2,6 +2,11 @@
 
 A random silly name generator but in Tamil
 
+Installation
+```
+npm i sillyname-tamil
+```
+
 ```javascript
 var generateName = require('sillyname-tamil');
 var sillyName = generateName();
