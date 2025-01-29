@@ -25,8 +25,6 @@ function generateStupidTamilName(generator){
     return adjective + noun1 + ' ' + noun2;
 }
 
-console.log(generateStupidTamilName());
-
-module.exports = generateStupidName;
+module.exports = generateStupidTamilName;
 module.exports.randomNoun = randomNoun;
 module.exports.randomAdjective = randomAdjective;
