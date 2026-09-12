@@ -8,6 +8,9 @@ to what sits on either side of it — கரு + குயில் is **கர
 *கருகுயில்*. This package applies those rules (புணர்ச்சி), so the names it
 produces read as Tamil rather than as two words in a row.
 
+**[Try it →](https://rajeshias.github.io/sillyname-tamil/)** — the demo highlights
+the consonant each compound grows at its seam and names the rule that put it there.
+
 ```
 npm i sillyname-tamil
 ```

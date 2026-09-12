@@ -1,0 +1,462 @@
+<title>Punarchi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Noto+Serif+Tamil:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+
+<style>
+  :root {
+    --paper: #edeeea;
+    --surface: #f7f8f5;
+    --ink: #16232e;
+    --muted: #67737c;
+    --line: #d6d8d2;
+    --line-soft: #e3e5e0;
+    --seam: #b4322a;
+    --seam-soft: #f1ddd9;
+    --roman: #126e63;
+
+    --tamil-serif: 'Noto Serif Tamil', 'Latha', serif;
+    --display: 'Source Serif 4', Georgia, serif;
+    --sans: 'IBM Plex Sans', system-ui, sans-serif;
+    --mono: 'IBM Plex Mono', ui-monospace, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #141a1e;
+      --surface: #1b2329;
+      --ink: #e6e9e4;
+      --muted: #8d9aa2;
+      --line: #2b343a;
+      --line-soft: #232b31;
+      --seam: #e8705f;
+      --seam-soft: #3a2320;
+      --roman: #4fbfae;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper: #141a1e;
+    --surface: #1b2329;
+    --ink: #e6e9e4;
+    --muted: #8d9aa2;
+    --line: #2b343a;
+    --line-soft: #232b31;
+    --seam: #e8705f;
+    --seam-soft: #3a2320;
+    --roman: #4fbfae;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    padding-block: 40px 64px;
+    padding-inline: 20px;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; gap: 44px; }
+
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+    margin: 0;
+  }
+
+  /* ---------- header ---------- */
+  header { display: flex; flex-direction: column; gap: 10px; }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(1.8rem, 4.4vw, 2.4rem);
+    font-weight: 600;
+    line-height: 1.1;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  h1 .ta { font-family: var(--tamil-serif); }
+
+  .lede { margin: 0; max-width: 60ch; color: var(--muted); }
+  .lede b { color: var(--ink); font-weight: 500; }
+
+  .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+
+  .chip {
+    font-family: var(--mono);
+    font-size: 12px;
+    padding: 3px 9px;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .chip a { color: inherit; }
+
+  /* ---------- specimen ---------- */
+  .specimen {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    padding: 40px 24px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    text-align: center;
+  }
+
+  .name {
+    font-family: var(--tamil-serif);
+    font-size: clamp(2.1rem, 8.5vw, 3.9rem);
+    font-weight: 600;
+    line-height: 1.45;
+    letter-spacing: -0.01em;
+    word-break: break-word;
+  }
+
+  /* the inserted consonant: the whole point of the package */
+  .name .seam {
+    color: var(--seam);
+    background: var(--seam-soft);
+    padding: 0 2px;
+    border-radius: 2px;
+    position: relative;
+  }
+  .name .seam::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -0.16em;
+    width: 1px;
+    height: 0.2em;
+    background: var(--seam);
+    transform: translateX(-50%);
+  }
+
+  .roman {
+    font-family: var(--mono);
+    font-size: clamp(0.95rem, 2.6vw, 1.15rem);
+    color: var(--roman);
+    letter-spacing: 0.01em;
+  }
+
+  .gloss { color: var(--muted); font-size: 14px; font-style: italic; }
+
+  .fresh { animation: rise 320ms cubic-bezier(.2,.7,.3,1); }
+  @keyframes rise { from { opacity: 0; transform: translateY(5px); } }
+
+  /* ---------- anatomy ---------- */
+  .anatomy { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0; border: 1px solid var(--line); }
+
+  .part {
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+  }
+  .part + .part { border-left: 1px solid var(--line); }
+
+  .part .ta { font-family: var(--tamil-serif); font-size: 1.3rem; line-height: 1.5; word-break: break-word; }
+  .part .en { color: var(--muted); font-size: 12.5px; }
+
+  .part.mid { background: var(--seam-soft); align-items: center; justify-content: center; text-align: center; }
+  .part.mid .ta { color: var(--seam); }
+  .part.mid .en { color: var(--seam); opacity: .8; letter-spacing: .08em; text-transform: uppercase; font-size: 10.5px; }
+
+  /* ---------- rule ---------- */
+  .rule {
+    display: flex;
+    gap: 14px;
+    align-items: baseline;
+    flex-wrap: wrap;
+    padding: 14px 18px;
+    border-left: 2px solid var(--seam);
+    background: var(--surface);
+  }
+  .rule .tag {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--seam);
+    text-transform: uppercase;
+    letter-spacing: .08em;
+  }
+  .rule .ta { font-family: var(--tamil-serif); font-weight: 600; }
+  .rule .txt { color: var(--muted); font-size: 14px; flex: 1 1 16ch; }
+
+  /* ---------- controls ---------- */
+  .controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+
+  button, select {
+    font-family: var(--sans);
+    font-size: 14px;
+    padding: 9px 16px;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    background: var(--surface);
+    color: var(--ink);
+    cursor: pointer;
+  }
+  button:hover, select:hover { border-color: var(--muted); }
+  button:focus-visible, select:focus-visible { outline: 2px solid var(--seam); outline-offset: 2px; }
+
+  button.primary {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+    font-weight: 500;
+  }
+  button.primary:hover { opacity: .88; }
+
+  .status { font-size: 13px; color: var(--roman); min-height: 1.2em; }
+
+  /* ---------- reference ---------- */
+  section.ref { display: flex; flex-direction: column; gap: 14px; }
+
+  table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+  th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line-soft); vertical-align: top; }
+  th { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 500; border-bottom-color: var(--line); }
+  td.k { font-family: var(--mono); color: var(--seam); white-space: nowrap; }
+  td.ex { font-family: var(--tamil-serif); white-space: nowrap; }
+  td.ex b { color: var(--seam); font-weight: 600; }
+  .scroll { overflow-x: auto; }
+
+  code.cmd {
+    display: block;
+    font-family: var(--mono);
+    font-size: 13px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    padding: 12px 14px;
+    overflow-x: auto;
+  }
+
+  footer { color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); padding-top: 18px; }
+  a { color: var(--roman); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+
+  @media (max-width: 560px) {
+    .anatomy { grid-template-columns: 1fr; }
+    .part + .part { border-left: none; border-top: 1px solid var(--line); }
+    .part.mid { align-items: flex-start; text-align: left; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fresh { animation: none; }
+    * { transition: none !important; }
+  }
+</style>
+
+<div class="wrap">
+  <header>
+    <p class="eyebrow">sillyname-tamil</p>
+    <h1><span class="ta">புணர்ச்சி</span> — silly Tamil names that actually join</h1>
+    <p class="lede">
+      Tamil doesn't build names by setting two words side by side. The modifier takes an
+      attributive form and the seam between the words changes: <b>கரு + குயில்</b> becomes
+      <b>கருங்குயில்</b>, growing a ங் that was in neither word. This generator applies those
+      rules, so press the button and watch the seam.
+    </p>
+    <div class="meta">
+      <span class="chip" id="chip-combos">—</span>
+      <span class="chip" id="chip-words">—</span>
+      <span class="chip"><a href="https://www.npmjs.com/package/sillyname-tamil">npm</a></span>
+      <span class="chip"><a href="https://github.com/rajeshias/sillyname-tamil">github</a></span>
+    </div>
+  </header>
+
+  <div>
+    <div class="specimen">
+      <div class="name" id="name" lang="ta"></div>
+      <div class="roman" id="roman"></div>
+      <div class="gloss" id="gloss"></div>
+    </div>
+
+    <div class="anatomy" style="border-top:none">
+      <div class="part">
+        <span class="ta" id="p-stem" lang="ta"></span>
+        <span class="en" id="p-stem-en"></span>
+      </div>
+      <div class="part mid">
+        <span class="ta" id="p-seam" lang="ta"></span>
+        <span class="en" id="p-seam-en"></span>
+      </div>
+      <div class="part">
+        <span class="ta" id="p-noun" lang="ta"></span>
+        <span class="en" id="p-noun-en"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="rule">
+    <span class="tag" id="r-tag"></span>
+    <span class="ta" id="r-ta" lang="ta"></span>
+    <span class="txt" id="r-txt"></span>
+  </div>
+
+  <div class="controls">
+    <button class="primary" id="go" type="button">New name</button>
+    <button id="copy" type="button">Copy romanized</button>
+    <select id="kind" aria-label="Restrict the head noun">
+      <option value="">Any noun</option>
+      <option value="creature">Creatures</option>
+      <option value="plant">Plants</option>
+      <option value="thing">Objects</option>
+      <option value="place">Places</option>
+    </select>
+    <span class="status" id="status" role="status"></span>
+  </div>
+
+  <section class="ref">
+    <p class="eyebrow">The five junction classes</p>
+    <div class="scroll">
+      <table>
+        <thead>
+          <tr><th>Class</th><th>Rule</th><th>Example</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="k">nasal</td>
+            <td>A homorganic nasal appears before க / ச / த / ப</td>
+            <td class="ex" lang="ta">கரு + குயில் → கரு<b>ங்</b>குயில்</td>
+          </tr>
+          <tr>
+            <td class="k">double</td>
+            <td>The hard consonant doubles across the seam</td>
+            <td class="ex" lang="ta">நீல + தாமரை → நீல<b>த்</b>தாமரை</td>
+          </tr>
+          <tr>
+            <td class="k">ran</td>
+            <td>A ன்-final stem turns its ன் into ற்</td>
+            <td class="ex" lang="ta">பொன் + கிளி → பொ<b>ற்</b>கிளி</td>
+          </tr>
+          <tr>
+            <td class="k">plain</td>
+            <td>Nothing changes at the seam</td>
+            <td class="ex" lang="ta">வெண் + மயில் → வெண்மயில்</td>
+          </tr>
+          <tr>
+            <td class="k">phrase</td>
+            <td>A relative participle stays its own word</td>
+            <td class="ex" lang="ta">பறக்கும் + பூனை → பறக்கும் பூனை</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="lede" style="font-size:14px">
+      These classes are assigned by hand per word, not derived from spelling, because Tamil
+      sandhi is lexical. ஜொலிக்கும் ends in ம் but is a participle, so stripping it yields
+      nonsense; and பொன் + சிலை is பொற்சிலை while மின் + சாரம் stays மின்சாரம்.
+    </p>
+  </section>
+
+  <section class="ref">
+    <p class="eyebrow">Install</p>
+    <code class="cmd">npm i sillyname-tamil</code>
+    <code class="cmd">const generateName = require('sillyname-tamil');
+generateName();                    // 'கருங்குயில்'
+generateName({ format: 'latin' }); // 'karunguyil'</code>
+  </section>
+
+  <footer>
+    MIT. Ported from <a href="https://github.com/tmpvar/sillyname">sillyname</a> by Geoff Wagstaff.
+    Transliteration targets readable usernames, not ISO 15919.
+  </footer>
+</div>
+
+<script src="sillyname.js"></script>
+<script>
+  (function () {
+    var $ = function (id) { return document.getElementById(id); };
+    var statusTimer;
+
+    $('chip-combos').textContent = SillyName.counts.combinations.toLocaleString() + ' combinations';
+    $('chip-words').textContent = SillyName.counts.adjectives + ' modifiers · ' + SillyName.counts.nouns + ' nouns';
+
+    var current = null;
+
+    function seamLabel(seam, joinClass) {
+      if (joinClass === 'phrase') return { ta: '␣', en: 'space' };
+      if (!seam) return { ta: '—', en: 'unchanged' };
+      return { ta: seam, en: 'inserted' };
+    }
+
+    function render(n) {
+      current = n;
+
+      var name = $('name');
+      name.innerHTML = '';
+      var mk = function (text, cls) {
+        var s = document.createElement('span');
+        if (cls) s.className = cls;
+        s.textContent = text;
+        return s;
+      };
+      name.appendChild(mk(n.parts.head));
+      if (n.parts.seam && n.joinClass !== 'phrase') name.appendChild(mk(n.parts.seam, 'seam'));
+      else if (n.parts.seam) name.appendChild(mk(n.parts.seam));
+      name.appendChild(mk(n.parts.tail));
+
+      $('roman').textContent = n.latin;
+      $('gloss').textContent = n.gloss;
+
+      $('p-stem').textContent = n.stem;
+      $('p-stem-en').textContent = n.stemGloss + ' · stem of ' + n.stemWord;
+
+      var lbl = seamLabel(n.parts.seam, n.joinClass);
+      $('p-seam').textContent = lbl.ta;
+      $('p-seam-en').textContent = lbl.en;
+
+      $('p-noun').textContent = n.noun;
+      $('p-noun-en').textContent = n.nounGloss + ' · ' + n.nounKind;
+
+      $('r-tag').textContent = n.rule.label;
+      $('r-ta').textContent = n.rule.tamil;
+      $('r-txt').textContent = n.rule.rule;
+
+      var spec = document.querySelector('.specimen');
+      spec.classList.remove('fresh');
+      void spec.offsetWidth;
+      spec.classList.add('fresh');
+    }
+
+    function say(msg) {
+      $('status').textContent = msg;
+      clearTimeout(statusTimer);
+      statusTimer = setTimeout(function () { $('status').textContent = ''; }, 2200);
+    }
+
+    function next() {
+      render(SillyName.build({ kind: $('kind').value || undefined }));
+    }
+
+    $('go').addEventListener('click', next);
+    $('kind').addEventListener('change', next);
+
+    $('copy').addEventListener('click', function () {
+      if (!current) return;
+      try {
+        navigator.clipboard.writeText(current.latin).then(
+          function () { say('Copied ' + current.latin); },
+          function () { say('Select the name to copy it'); }
+        );
+      } catch (e) {
+        say('Select the name to copy it');
+      }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === ' ' && e.target === document.body) { e.preventDefault(); next(); }
+    });
+
+    next();
+  })();
+</script>

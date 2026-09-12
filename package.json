@@ -15,7 +15,9 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "demo": "esbuild demo/entry.js --bundle --format=iife --global-name=SillyName --outfile=docs/sillyname.js",
+    "prepublishOnly": "npm test"
   },
   "repository": {
     "type": "git",
@@ -38,6 +40,7 @@
     "node": ">=12"
   },
   "devDependencies": {
-    "mocha": "^10.2.0"
+    "mocha": "^10.2.0",
+    "esbuild": "^0.20.2"
   }
 }
