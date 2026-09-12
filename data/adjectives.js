@@ -117,7 +117,10 @@ module.exports = [
   { word: 'கார்', stem: 'கார்', join: 'plain', gloss: 'dark-cloud', modifies: ['creature', 'place'] },
   { word: 'வான்', stem: 'வான்', join: 'plain', gloss: 'celestial/sky', modifies: ['creature', 'place'] },
   { word: 'விண்', stem: 'விண்', join: 'plain', gloss: 'cosmic/star', modifies: ['creature', 'thing'] },
-  { word: 'மின்', stem: 'மின்', join: 'ran', gloss: 'lightning/spark', modifies: ['creature', 'thing'] },
+  // 'plain', not 'ran': மின் keeps its ன் before a hard consonant
+  // (மின்சாரம், மின்விளக்கு), unlike பொன் -> பொற்காலம். Gemination before a
+  // vowel still applies via the seam rule, giving மின்னல்.
+  { word: 'மின்', stem: 'மின்', join: 'plain', gloss: 'lightning/spark', modifies: ['creature', 'thing'] },
   { word: 'இருள்', stem: 'இருள்', join: 'plain', gloss: 'shadow/gloom', modifies: ['creature', 'place'] },
   { word: 'சோலை', stem: 'சோலை', join: 'double', gloss: 'grove', modifies: ['creature', 'plant'] },
   { word: 'பாலை', stem: 'பாலை', join: 'double', gloss: 'desert', modifies: ['creature', 'place'] },
